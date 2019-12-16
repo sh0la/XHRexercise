@@ -29,8 +29,12 @@ form.addEventListener('submit', function(e) {
    
   }
 
-  
+  function handleError () {
+    throw new Error(networkError.message)
+  }
+
   xhr.onload = handleSuccess;
+  xhr.onerror = handleError;
   xhr.send();
 
 
