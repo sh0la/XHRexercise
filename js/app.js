@@ -1,5 +1,6 @@
 const input = document.querySelector('#movie-name');
 const form = document.querySelector('form');
+const display = document.querySelector('#display')
 const url = 'http://www.omdbapi.com/?'
 const apikey = 'apikey=c4fc44ed'
 
@@ -22,11 +23,8 @@ form.addEventListener('submit', function(e) {
     let data = JSON.parse(xhr.responseText)
 
     for (each of data.Search) {
-      form.insertAdjacentHTML('afterend', `<img src=${each.Poster}>`)
-      //console.log(`${each.Poster}/n`)
-    }
-    //console.log(data)
-   
+      display.insertAdjacentHTML('beforeend', `<img class='displayed' src=${each.Poster}>`)
+    } 
   }
 
   function handleError () {
@@ -36,8 +34,5 @@ form.addEventListener('submit', function(e) {
   xhr.onload = handleSuccess;
   xhr.onerror = handleError;
   xhr.send();
-
-
-
 })
 
